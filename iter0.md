@@ -1,4 +1,4 @@
 ## Entry Video
-[Customer Video](https://berkeley.mywconline.com/ "slc")
+[Customer Video (Private)](https://www.youtube.com/watch?v=zCi_TiwngqE&feature=youtu.be "slc")
 ## Screencast
-[Development Evironment](https://berkeley.mywconline.com/ "slc")
+[Development Evironment](https://youtu.be/TiDciJOltCU "slc")
