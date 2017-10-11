@@ -10,3 +10,4 @@
 [Pivotal Tracker](https://www.pivotaltracker.com/n/projects/2118568 "pvt")
 ## Description
 Lets users of the Student Learning Center know their wait position and time for drop-ins.
+[Student Learning Center](https://berkeley.mywconline.com/ "slc")
