@@ -1,19 +1,21 @@
 Feature: view next student in line
   
   As a tutor
-  So that I can meet the next student
+  So that I can decide which student to work with
   I want to see who is next in line
   
-Scenario: view next student if tutor
-  Given I am logged in as a "tutor"
-  When I follow "Queue"
-  Then I should be on the Queue page
-  And I should see the next student
+Scenario: list of students in line
+  Given I am logged in as a tutor
+  And I am on the student line page
+  Then I should see a list of students
+ 
   
-Scenario: can't view unless tutor
-  Given I am logged in as a "student"
+Scenario: working with a student
+  Given I am on the student line page
+  When I edit student "Salvador"
+  Then I should see "Salvador in progress"
+  
+
   
   
-Scenario: no students in line
-  Given I am logged in as a "tutor"
-  When I follow
+Scenario: 
