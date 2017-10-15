@@ -72,3 +72,7 @@ end
 Given /^I am on the sign up form$/ do
   pending
 end
+
+Then /^I should see a wait time$/ do
+  pending
+end
