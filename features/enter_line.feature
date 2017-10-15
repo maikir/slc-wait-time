@@ -4,4 +4,6 @@ Feature: enter line for help
   So that I can receive help with my writing
   I want to get in line
   
-Scenario:
+Scenario: student waits in line
+  
+Scenario: student declines waiting in line
