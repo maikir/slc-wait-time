@@ -40,3 +40,35 @@ end
 Given /^there are no students$/ do |word|
   pending
 end
+
+Given /^a student is on the home page$/ do
+  pending
+end
+
+Given /^the student clicks sign in$/ do
+  pending
+end
+
+Given /^I am on the wait time page$/ do
+  pending
+end
+
+Then /^I should be on the sign up form$/ do
+  pending
+end
+
+Then /^I should not be on the sign up form$/ do
+  pending
+end
+
+When /^I fill out information$/ do
+  pending
+end
+
+When /^I click on "(.*)"$/ do |word|
+  pending
+end
+
+Given /^I am on the sign up form$/ do
+  pending
+end
