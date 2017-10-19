@@ -1,15 +1,18 @@
 class StudentRequestsController < ApplicationController
 	
-	def wait_time
+  def wait_time
 	  @student_request = StudentRequest.find(params[:id])
-    end
+	  @wait_position = @student_request.wait_pos
+	  @wait_time = @wait_position * 30
+      
+  end
     
-	def new
+  def new
 	    # render new template	
-	end
+  end
 	
-    def create
+  def create
 	    # place holder
-    end
+  end
     
 end
