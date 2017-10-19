@@ -77,4 +77,14 @@ Then /^I should see a wait time$/ do
   pending
 end
 
-Then /^Given a student is on the "sign up" page$
+Given /^I am on (.*)$/ do |page_name|
+  visit path_to(page_name)
+end
+
+When /^I fill in the "(.*)" form and click "(.*)"$/ do |form_type, button|
+  pending
+end
+
+Then /^I should see a wait time of (.*)$/ do |page_name|
+  visit path_to(page_name)
+end
