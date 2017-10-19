@@ -76,3 +76,5 @@ end
 Then /^I should see a wait time$/ do
   pending
 end
+
+Then /^Given a student is on the "sign up" page$
