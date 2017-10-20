@@ -16,6 +16,8 @@ module NavigationHelpers
     when /^the home\s?page$/
       '/'
       
+    when /^the student line page$/ then '/studentlist'
+      
     when /^the sign up page$/ then '/student_requests/new'
 
     # Add more mappings here.
