@@ -11,6 +11,10 @@ Rails.application.routes.draw do
   get 'student_requests/student_queue' => 'student_queue#index'
   post 'student_requests' => 'student_requests#create'
   get 'student_requests/:id/wait_time' => 'student_requests#wait_time', as: :wait_time_student_request
+  get 'student_requests/:id/confirm' => 'student_requests#confirm', as: :confirm_student_request
+  get 'student_requests/:id/remove' => 'student_requests#remove', as: :remove_student_request
+
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
