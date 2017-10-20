@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20171020171637) do
   end
 
   create_table "student_queues", force: :cascade do |t|
-    t.integer  "student_sid"
+    t.integer  "student_id"
     t.string   "course"
     t.integer  "tutor_sid"
     t.time     "start_time"
