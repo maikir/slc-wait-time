@@ -1,4 +1,4 @@
 class Student < ActiveRecord::Base
-    self.foreign = :sid
+    self.primary_key = :sid
     has_many :drop_in_histories
 end

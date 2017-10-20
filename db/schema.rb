@@ -11,24 +11,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171019004027) do
+ActiveRecord::Schema.define(version: 20171020171637) do
+
+  create_table "drop_in_histories", force: :cascade do |t|
+    t.integer  "student_id"
+    t.string   "course"
+    t.integer  "tutor_sid"
+    t.time     "start_time"
+    t.time     "end_time"
+    t.string   "tutor_notes"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "student_queues", force: :cascade do |t|
+    t.integer  "student_sid"
+    t.string   "course"
+    t.integer  "tutor_sid"
+    t.time     "start_time"
+    t.boolean  "waiting?"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "student_requests", force: :cascade do |t|
-    t.string   "last_name"
-    t.string   "first_name"
-    t.string   "sid"
+    t.integer  "student_sid"
     t.string   "request_type"
     t.string   "course"
-    t.string   "residency_status"
-    t.boolean  "transfer_student"
-    t.boolean  "concurrency_student"
-    t.string   "tutor"
+    t.integer  "tutor_sid"
     t.time     "start_time"
     t.time     "end_time"
     t.text     "notes"
     t.string   "status"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.integer  "wait_pos"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "students", force: :cascade do |t|
