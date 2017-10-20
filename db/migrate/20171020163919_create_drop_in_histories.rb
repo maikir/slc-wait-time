@@ -9,8 +9,8 @@ class CreateDropInHistories < ActiveRecord::Migration
       t.time :end_time #endtime => create time since students are added to the histroy after being seen.
       t.string :tutor_notes
 
-      #***waiting?= true is for students still waiting to be seen. and waiting? = false for students currently being seen by a tutor.
-      t.boolean :waiting?
+      #*** what will be the values of status? -- "finished", "canceled", "didn't join queue" ---> just "no show"?
+      t.string :status
       t.timestamps  #sort by create time.
     end
   end
