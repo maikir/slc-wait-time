@@ -7,7 +7,7 @@ Feature: enter line for help
 
 Scenario: Jennifer wants to wait in line
   Given "Jennifer" "Be" is on the wait time page
-  And she clicks on "yes"
+  And I press "yes"
   Then "Jennifer" "Be" should be on the home page #create to create a not 
   And "Jennifer" "Be" should see "you are in line"
   And "Jennifer" "Be" should not see "Hope to see you soon"
