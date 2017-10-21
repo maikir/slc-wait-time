@@ -92,7 +92,6 @@ When /^I fill in the "(.*)" form and click "(.*)"$/ do |form_type, button|
   radio_fields = ["request_type_appointment"]
   
   for i in 0..(text_fields.length-1)
-    print i
     text_field = text_fields[i]
     text_input = text_inputs[i]
     steps %Q{
