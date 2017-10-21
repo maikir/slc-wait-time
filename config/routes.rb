@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   root 'student_requests#new'
   get 'student_requests/new' => 'student_requests#new', as: :new_student_request
-  get 'student_requests/student_queue' => 'student_queue#index'
+  get 'student_queue' => 'student_queue#student_queue'
   post 'student_requests' => 'student_requests#create'
   get 'student_requests/:id/wait_time' => 'student_requests#wait_time', as: :wait_time_student_request
   get 'student_requests/:id/confirm' => 'student_requests#confirm', as: :confirm_student_request
