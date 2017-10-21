@@ -6,7 +6,8 @@
     <%= text_field_tag "student_last_name", placeholder= "Last Name", class: "form_signup"   %>
 
     <%= label_tag(:first_name, "First Name *") %>
-    <%= text_field_tag "studet_first_name", placeholder= "Last Name", class: "form_signup"  %>
+
+    <%= text_field_tag "student_first_name", placeholder= "Last Name", class: "form_signup"  %>
 
     <%= label_tag(:sid, "SID") %>
     <%= text_field_tag "student_sid", placeholder= "000000000", class: "form_signup" %>
@@ -15,7 +16,7 @@
     <%= email_field_tag "student_email", placeholder="example@gmail.com", class: "form_signup"  %>
      
     <%= label_tag(:request_type, "Appointment") %>
-    <%= radio_button_tag(:request_type, "Appointment") %>
+    <%= radio_button_tag(:request_type, "appointment") %>
 
 
     <%= label_tag(:course, "Course") %>

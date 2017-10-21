@@ -20,7 +20,7 @@ module NavigationHelpers
     when /^the sign up page$/ then new_student_queue_path
       
     when /^the wait time page for (.*)$/i
-      wait_time_student_queue_path(StudentQueue.where(id: $1)[0]["id"])
+      wait_time_student_queue_path($1)
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
