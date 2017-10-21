@@ -15,7 +15,7 @@ module NavigationHelpers
 
     when /^the home\s?page$/
       '/'
-      
+    when /^the student line page$/ then '/studentlist'
       
     when /^the sign up page$/ then new_student_queue_path
       

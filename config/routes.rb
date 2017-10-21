@@ -5,10 +5,14 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
+  resources :students do
+    resources :drop_in_histories
+  end
+  
+  resources :student_queues
+
 
   root 'student_queues#new'
-  get 'student_queues/new' => 'student_queues#new', as: :new_student_queue
-  post 'student_queues' => 'student_queues#create'
   get 'student_queues/:id/wait_time' => 'student_queues#wait_time', as: :wait_time_student_queue
   get 'student_queues/:id/confirm' => 'student_queues#confirm', as: :confirm_student_request
   get 'student_queues/:id/remove' => 'student_queues#remove', as: :remove_student_request

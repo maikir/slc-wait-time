@@ -19,12 +19,18 @@ Given /^I am logged in as a tutor$/ do
   pending
 end
 
-Given /^I am on the student line page$/ do
-  pending
+Then /^(?:|I )should see "([^"]*)"$/ do |text|
+  if page.respond_to? :should
+    page.should have_content(text)
+  else
+    assert page.has_content?(text)
+  end
 end
 
 Then /^I should see a list of students$/ do
-  pending
+    StudentQueue.all.each do |entry|
+    step %{I should see "#{entry.student.first_name} #{entry.student.last_name}"}
+  end
 end
 
 When /^I edit student "(.*)"$/ do |word|
