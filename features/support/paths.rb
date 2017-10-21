@@ -19,8 +19,13 @@ module NavigationHelpers
       
     when /^the sign up page$/ then new_student_queue_path
       
-    when /^the wait time page for (.*)$/i
-      wait_time_student_queue_path($1)
+    when /^the wait time page for "(.*)" "(.*)"$/i then
+      student = Student.where(:first_name => $1, :last_name => $2)[0]
+      wait_time_student_queue_path(student.sid)
+      
+    when /^the confirmation page for "([^"]*)" "([^"]*)"$/ then
+      student = Student.where(:first_name => $1, :last_name => $2)[0]
+      confirm_student_queue_path(student.sid)
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

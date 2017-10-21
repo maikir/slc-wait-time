@@ -7,7 +7,7 @@ Given /^"([^"]*)" "([^"]*)" is on the wait time page$/ do |first_name, last_name
         And I fill in "student_last_name" with "#{last_name}"
         And I fill in "student_sid" with "#{sid}"
         And I click on "form_submit"
-        # Then I should be on the wait time page for "#{sid}"
+        Then I should be on the wait time page for "#{first_name}" "#{last_name}"
     }
 end
 
@@ -20,12 +20,16 @@ end
 Given /^"([^"]*)" "([^"]*)" is already in line$/ do |first_name, last_name| 
     steps %Q{
         Given "Jennifer" "Be" is on the wait time page
-        And she clicks on "yes"
+        And she clicks on "YES"
         Given "Jennifer" "Be" is on the wait time page
     }
 end
 
+# Then /^(?:she|he?) should be on the home page/ do |page_name| 
+#     steps %Q{ Then I should be on the "#{page_name}"}
+# end
+
 And /^(?:she|he?) clicks on "(.*)"$/ do |button| 
-    steps %Q{ When I click on "#{button}"}
+    steps %Q{ When follow "#{button}"}
 end
 

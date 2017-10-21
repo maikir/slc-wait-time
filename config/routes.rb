@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   root 'student_queues#new'
   get 'student_queues/:id/wait_time' => 'student_queues#wait_time', as: :wait_time_student_queue
-  get 'student_queues/:id/confirm' => 'student_queues#confirm', as: :confirm_student_request
+  get 'student_queues/:id/confirm' => 'student_queues#confirm', as: :confirm_student_queue
   get 'student_queues/:id/remove' => 'student_queues#remove', as: :remove_student_request
 
   # Example of regular route:
