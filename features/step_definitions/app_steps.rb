@@ -19,12 +19,12 @@ Given /^I am logged in as a tutor$/ do
   pending
 end
 
-Given /^I am on the student line page$/ do
-  pending
-end
+
 
 Then /^I should see a list of students$/ do
-  pending
+    StudentQueue.all.each do |entry|
+    step %{I should see "#{entry.student.first_name} #{entry.student.last_name}"}
+  end
 end
 
 When /^I edit student "(.*)"$/ do |word|
@@ -69,8 +69,8 @@ When /^I fill out information$/ do
   pending
 end
 
-When /^I click on "(.*)"$/ do |word|
-  pending
+When /^I click on "(.*)"$/ do |button|
+  click_button(button)
 end
 
 Given /^I am on the sign up form$/ do
