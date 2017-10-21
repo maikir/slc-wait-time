@@ -14,9 +14,9 @@
 <tr>
 <% @queueentries.each do |entry| %>                    
   <td><%= entry.created_at %><td>
-  <td><%= entry.student.first_name + " " + entry.student.last_name %><td>
+  <td><%= %Q(#{entry.student.first_name} #{entry.student.last_name}) %><td>
   <td><%= entry.course %><td> 
-  <td><%= entry.tutor.first_name %><td>
+  <td><%= "tbc" %><td>
   <% if entry.start_time %>
 	<td><%= "waiting" %><td>
   <% else %>

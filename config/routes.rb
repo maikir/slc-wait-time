@@ -17,7 +17,6 @@ Rails.application.routes.draw do
   get 'student_queues/:id/confirm' => 'student_queues#confirm', as: :confirm_student_request
   get 'student_queues/:id/remove' => 'student_queues#remove', as: :remove_student_request
 
-
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

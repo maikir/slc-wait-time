@@ -10,6 +10,12 @@ Given /^"([^"]*)" "([^"]*)" is on the wait time page$/ do |first_name, last_name
     }
 end
 
+Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
+  #  ensure that that e1 occurs before e2.
+  #  page.body is the entire content of the page as a string.
+  expect(page.body.index(e1) < page.body.index(e2))
+end
+
 Given /^"([^"]*)" "([^"]*)" is already in line$/ do |first_name, last_name| 
     steps %Q{
         Given "Jennifer" "Be" is on the wait time page

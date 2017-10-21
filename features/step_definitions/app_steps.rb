@@ -15,6 +15,12 @@ Given /the following student queues exist/ do |student_queues_table|
   end
 end
 
+Given /the following students exist/ do |students_table|
+  students_table.hashes.each do |student|
+    Student.create student
+  end
+end
+
 Given /^I am logged in as a tutor$/ do
   pending
 end
