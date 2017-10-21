@@ -17,7 +17,7 @@ module NavigationHelpers
       '/'
       
       
-    when /^the sign up page$/ then new_student_request_path
+    when /^the sign up page$/ then new_student_queue_path
       
     when /^the wait time page for (.*)$/i
       wait_time_student_queue_path(StudentQueue.where(id: $1)[0]["id"])
