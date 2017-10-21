@@ -69,8 +69,8 @@ When /^I fill out information$/ do
   pending
 end
 
-When /^I click on "(.*)"$/ do |word|
-  pending
+When /^I click on "(.*)"$/ do |button|
+  click_button(button)
 end
 
 Given /^I am on the sign up form$/ do
