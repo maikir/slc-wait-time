@@ -9,6 +9,12 @@ module WithinHelpers
 end
 World(WithinHelpers)
 
+Given /the following student queues exist/ do |student_queues_table|
+  student_queues_table.hashes.each do |student_queue|
+    StudentQueue.create student_queue
+  end
+end
+
 Given /^I am logged in as a tutor$/ do
   pending
 end
@@ -31,9 +37,7 @@ When /^I edit student "(.*)"$/ do |word|
   pending
 end
 
-Then /^I should see "(.*)"$/ do |word|
-  pending
-end
+
 
 When /^I fill in "(.*)" and "(.*)" times with "(.*)" and "(.*)"$/ do |word|
   pending
@@ -71,8 +75,8 @@ When /^I fill out information$/ do
   pending
 end
 
-When /^I click on "(.*)"$/ do |word|
-  pending
+When /^I click on "(.*)"$/ do |button|
+  click_button(button)
 end
 
 Given /^I am on the sign up form$/ do
@@ -91,6 +95,15 @@ When /^I fill in the "(.*)" form and click "(.*)"$/ do |form_type, button|
   pending
 end
 
-Then /^I should see a wait time of (.*)$/ do |page_name|
-  visit path_to(page_name)
+Then /^I should see a wait time of "(.*)"$/ do |wait_time|
+  step %{I should see "#{wait_time}"}
+end
+
+Then /^(?:|I )should not be on (.+)$/ do |page_name|
+  current_path = URI.parse(current_url).path
+  if current_path.respond_to? :should
+    current_path.should != path_to(page_name)
+  else
+    assert_not_equal path_to(page_name), current_path
+  end
 end

@@ -1,0 +1,4 @@
+<h1>Your estimated wait time is <%= @wait_time %> min</h1>
+Do you want to wait in line?
+<%= link_to "yes", new_student_queue_path, class: 'button' %>
+<%= link_to "no", new_student_queue_path, class: 'button' %>
