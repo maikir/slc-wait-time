@@ -1,7 +1,7 @@
 
 Given /^"([^"]*)" "([^"]*)" is on the wait time page$/ do |first_name, last_name|
     steps %Q{
-        Given I am on the sign up page
+        Given I am on the home page
         Then I fill in "student_first_name" with "#{first_name}"
         And I fill in "student_last_name" with "#{last_name}"
         And I fill in "student_sid" with "123456"
