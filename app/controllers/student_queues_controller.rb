@@ -28,11 +28,12 @@ class StudentQueuesController < ApplicationController
       last_name = params[:student_last_name]
       email = params[:student_email]
       course = params[:student_course]
-      
+    
       
       @student = Student.create(:first_name => first_name, 
                                 :last_name => last_name, 
                                 :sid => @sid)
+    end
     #NOTE: Student Model should have am email field in the future.
     @student.create_student_queue(:course => course,
                                   :waiting? => true,
