@@ -36,17 +36,21 @@ ActiveRecord::Schema.define(version: 20171020171637) do
   end
 
   create_table "student_requests", force: :cascade do |t|
-    t.integer  "student_sid"
+    t.string   "last_name"
+    t.string   "first_name"
+    t.string   "sid"
     t.string   "request_type"
     t.string   "course"
-    t.integer  "tutor_sid"
+    t.string   "residency_status"
+    t.boolean  "transfer_student"
+    t.boolean  "concurrency_student"
+    t.string   "tutor"
     t.time     "start_time"
     t.time     "end_time"
     t.text     "notes"
     t.string   "status"
-    t.integer  "wait_pos"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
   create_table "students", force: :cascade do |t|

@@ -17,6 +17,9 @@ class StudentQueuesController < ApplicationController
 	
   def create
     # place holder
+    @student1 = StudentQueue.new(:waiting? => true)
+    @student1.save
+    redirect_to wait_time_student_queue_path(@student1)
   end
 
   def confirm

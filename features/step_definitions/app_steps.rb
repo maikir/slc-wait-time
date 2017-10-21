@@ -86,7 +86,32 @@ Given /^I am on (.*)$/ do |page_name|
 end
 
 When /^I fill in the "(.*)" form and click "(.*)"$/ do |form_type, button|
-  pending
+  
+  text_fields = ["student_last_name", "student_first_name", "student_sid", "student_email", "student_course"]
+  text_inputs = ["brown", "bob", "12345678", "bobb@berkeley.edu", "english"]
+  radio_fields = ["request_type_appointment"]
+  
+  for i in 0..(text_fields.length-1)
+    print i
+    text_field = text_fields[i]
+    text_input = text_inputs[i]
+    steps %Q{
+      When I fill in "#{text_field}" with "#{text_input}"
+    }
+  end
+
+  for i in 0..(radio_fields.length-1)
+    radio_button = radio_fields[i]
+    steps %Q{
+      When I click "#{radio_button}"
+    }
+  end
+  steps %Q{
+      When I press "Submit"
+  }
+
+
+
 end
 
 Then /^I should see a wait time of "(.*)"$/ do |wait_time|
