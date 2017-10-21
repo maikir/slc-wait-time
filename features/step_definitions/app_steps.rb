@@ -9,25 +9,35 @@ module WithinHelpers
 end
 World(WithinHelpers)
 
+Given /the following student queues exist/ do |student_queues_table|
+  student_queues_table.hashes.each do |student_queue|
+    StudentQueue.create student_queue
+  end
+end
+
 Given /^I am logged in as a tutor$/ do
   pending
 end
 
-Given /^I am on the student line page$/ do
-  pending
+Then /^(?:|I )should see "([^"]*)"$/ do |text|
+  if page.respond_to? :should
+    page.should have_content(text)
+  else
+    assert page.has_content?(text)
+  end
 end
 
 Then /^I should see a list of students$/ do
-  pending
+    StudentQueue.all.each do |entry|
+    step %{I should see "#{entry.student.first_name} #{entry.student.last_name}"}
+  end
 end
 
 When /^I edit student "(.*)"$/ do |word|
   pending
 end
 
-Then /^I should see "(.*)"$/ do |word|
-  pending
-end
+
 
 When /^I fill in "(.*)" and "(.*)" times with "(.*)" and "(.*)"$/ do |word|
   pending
@@ -85,8 +95,8 @@ When /^I fill in the "(.*)" form and click "(.*)"$/ do |form_type, button|
   pending
 end
 
-Then /^I should see a wait time of (.*)$/ do |page_name|
-  visit path_to(page_name)
+Then /^I should see a wait time of "(.*)"$/ do |wait_time|
+  step %{I should see "#{wait_time}"}
 end
 
 Then /^(?:|I )should not be on (.+)$/ do |page_name|

@@ -11,12 +11,14 @@ Rails.application.routes.draw do
   
   resources :student_queues
 
-  root 'student_requests#new'
-  get 'student_requests/new' => 'student_requests#new', as: :new_student_request
-  post 'student_requests' => 'student_requests#create'
-  get 'student_requests/:id/wait_time' => 'student_requests#wait_time', as: :wait_time_student_request
-  get 'student_requests/:id/confirm' => 'student_requests#confirm', as: :confirm_student_request
-  get 'student_requests/:id/remove' => 'student_requests#remove', as: :remove_student_request
+
+  root 'student_queues#new'
+  get 'student_queues/new' => 'student_queues#new', as: :new_student_queue
+  post 'student_queues' => 'student_queues#create'
+  get 'student_queues' => 'student_queue#student_queue'
+  get 'student_queues/:id/wait_time' => 'student_queues#wait_time', as: :wait_time_student_queue
+  get 'student_queues/:id/confirm' => 'student_queues#confirm', as: :confirm_student_request
+  get 'student_queues/:id/remove' => 'student_queues#remove', as: :remove_student_request
 
 
   # Example of regular route:
