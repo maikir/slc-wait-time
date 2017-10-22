@@ -24,11 +24,11 @@ class StudentQueuesController < ApplicationController
 	
   def create
     @sid = params[:student_sid]
+    course = params[:student_course]
     if (Student.where(:id => @sid).empty?)
       first_name = params[:student_first_name]
       last_name = params[:student_last_name]
       email = params[:student_email]
-      course = params[:student_course]
     
       
       @student = Student.create(:first_name => first_name, 
@@ -38,7 +38,7 @@ class StudentQueuesController < ApplicationController
     #NOTE: Student Model should have am email field in the future.
     @student.create_student_queue(:course => course,
                                   :waiting? => true,
-                                  :start_time => Time.now) #will have to make this PST.
+                                  :start_time => Time.now.in_time_zone('Pacific Time (US & Canada)')) #will have to make this PST.
     # place holder
 
     redirect_to wait_time_student_queue_path(@student)
@@ -47,6 +47,10 @@ class StudentQueuesController < ApplicationController
 
   def confirm
     #wait in line
+  end
+
+  def destroy
+    #send student here if they decide to not to stay in line.
   end
 
   def leave

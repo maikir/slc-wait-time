@@ -26,15 +26,21 @@ Given /^"([^"]*)" "([^"]*)" is already in line$/ do |first_name, last_name|
   }
 end
 
-# Then /^(?:she|he?) should be on the home page/ do |page_name| 
-#     steps %Q{ Then I should be on the "#{page_name}"}
-# end
+Then /^"(.*)" "(.*)" should (not)? be in line$/ do |first_name, last_name, not_be_in_line|
+  student_list = Student.where(:first_name => first_name, :last_name => last_name)
+  student_list.should_not be_empty
+  student = student_list[0]
 
-# Then /^(?:she|he?) should see "(.*)"$/ do |phrase|
-#   steps %Q{ Then I should see "#{phrase}" }
-# end
+  if not_be_in_line
+    expect(student.student_queue).to eq(nil)
+    expect(StudentQueue.where(:student_id => student.sid)).to be_empty
+  else
+    student.student_queue.should_not == nil
+    expect(StudentQueue.where(:student_id => student.sid)).to eq(student.student_queue)
+  end
+end
 
-And /^(?:she|he?) clicks on "(.*)"$/ do |button| 
+And /^(?:she|he?) clicks on "(.*)"$/ do |button|
   steps %Q{ When follow "#{button}"}
 end
 
