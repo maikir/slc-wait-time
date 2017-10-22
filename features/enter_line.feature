@@ -12,12 +12,12 @@ Scenario: Jennifer wants to wait in line
   And she should see "you are in line"
   And she should not see "Hope to see you soon"
 
-# Scenario: Jennifer doesn't want to wait in line
-#   Given "Jennifer" "Be" is on the wait time page
-#   And she clicks on "no"
-#   Then "Jennifer" "Be" should not be on the confirmation page
-#   And she should see "Hope to see you soon"
-#   And she should not see "you are in line"
+Scenario: Jennifer doesn't want to wait in line
+  Given "Jennifer" "Be" is on the wait time page
+  And she clicks on "NO"
+  Then she should be on the confirmation page for "Jennifer" "Be"
+  And she should see "you are not in line"
+  And she should not see "you are in line"
   
 
 #have to rethink this senario because current implementation won't let 

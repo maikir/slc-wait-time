@@ -23,7 +23,7 @@ Given /the following student queues exist/ do |student_data_table|
     if create_time
       student.create_student_queue(:waiting? => waiting, :created_at => create_time)
     else
-      student_data.create_student_queue(:waiting? => waiting)
+      student.create_student_queue(:waiting? => waiting)
     end
   end
 end
@@ -86,6 +86,15 @@ Then /^(?:she|he|I) should be on (.+)/ do |page_name|
     current_path.should == path_to(page_name)
   else
     assert_equal path_to(page_name), current_path
+  end
+end
+
+Then /^(?:I|she|he) should not be on (.+)$/ do |page_name|
+  current_path = URI.parse(current_url).path
+  if current_path.respond_to? :should
+    current_path.should_not == path_to(page_name)
+  else
+    assert_not_equal path_to(page_name), current_path
   end
 end
 
@@ -181,11 +190,3 @@ Then /^I should see a wait time of "(.*)"$/ do |wait_time|
   step %{I should see "#{wait_time}"}
 end
 
-Then /^(?:|I )should not be on (.+)$/ do |page_name|
-  current_path = URI.parse(current_url).path
-  if current_path.respond_to? :should
-    current_path.should != path_to(page_name)
-  else
-    assert_not_equal path_to(page_name), current_path
-  end
-end

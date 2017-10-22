@@ -2,7 +2,8 @@ class StudentQueuesController < ApplicationController
 	def index
 	  @queueentries = StudentQueue.order('created_at')
     render "student_queues/index"
-	end
+  end
+
   def wait_time
     #byebug
     @sorted_results = StudentQueue.where(waiting?: true).sort_by {|request| request.id}
