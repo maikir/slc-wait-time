@@ -51,6 +51,9 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'metric_fu'
   gem 'jasmine-rails'
+
+  #auto complete rails 4 commands.
+  gem 'rails4-autocomplete', '~> 1.1', '>= 1.1.1'
 end
 
 group :test do
