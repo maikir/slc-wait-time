@@ -20,6 +20,6 @@ Scenario: list of students in line
 # Scenario: see no students
 #   Given I am logged in as a tutor
     And I am on the student line page
-    # Then I should see "Alex Yang" before "Maiki Rainton"
-    # And I should see "Alex Yang" before "Nahrae Seok"
+    Then I should see "Alex Yang" before "Maiki Rainton"
+    And I should see "Alex Yang" before "Nahrae Seok"
   
