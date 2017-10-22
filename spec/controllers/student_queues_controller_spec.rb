@@ -29,7 +29,13 @@ RSpec.describe StudentQueuesController, type: :controller do
   end
 
   describe 'enter line' do
-    it 'checks the Student model if the student exists.'
+    before :each do
+      @params = {:first_name => 'Athina', :last_name => 'kaunda', :student_sid => '1234', :course => 'math'}
+    end
+    it 'checks the Student model if the student exists.' do
+      expect(Student).to receive(:where).with(:id => '1').and_return([])
+      post :create, @params
+    end
     it 'creates the student if the student does not exists in the database'
     it 'adds the student to the queue'
   end
