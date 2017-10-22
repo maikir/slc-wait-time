@@ -6,18 +6,11 @@ Feature: view next student in line
   Background: student requests in database
  
   Given the following student queues exist:
-  | student_id | waiting? | created_at
-  | 25804240   | true     | 2012-09-10 14:44:24 UTC
-  | 00000000   | false    | 2011-09-10 14:44:24 UTC
-  | 25804241   | true     | 2013-09-10 14:44:24 UTC
-  | 25804242   | true     | 2014-09-10 14:44:24 UTC
-  
-  Given the following students exist:
-  | sid | first_name | last_name
-  | 25804240   | Alex     | Yang
-  | 00000000   | Haggai   | Kaunda
-  | 25804241   | Maiki     | Rainton
-  | 25804242   | Nahrae     | Seok
+  | sid        | first_name | last_name | waiting? | created_at              |
+  | 25804240   | Alex       | Yang      | true     | 2012-09-10 14:44:24 UTC |
+  | 00000000   | Haggai     | Kaunda    | false    | 2011-09-10 14:44:24 UTC |
+  | 25804241   | Maiki      | Rainton   | true     | 2013-09-10 14:44:24 UTC |
+  | 25804242   | Nahrae     | Seok      | true     | 2014-09-10 14:44:24 UTC |
 
 Scenario: list of students in line
   #   Given I am logged in as a tutor

@@ -29,7 +29,9 @@ end
 #     steps %Q{ Then I should be on the "#{page_name}"}
 # end
 
-
+# Then /^(?:she|he?) should see "(.*)"$/ do |phrase|
+#   steps %Q{ Then I should see "#{phrase}" }
+# end
 
 And /^(?:she|he?) clicks on "(.*)"$/ do |button| 
   steps %Q{ When follow "#{button}"}

@@ -9,8 +9,8 @@ Scenario: Jennifer wants to wait in line
   Given "Jennifer" "Be" is on the wait time page
   And she clicks on "YES"
   Then she should be on the confirmation page for "Jennifer" "Be"
-  And "Jennifer" "Be" should see "you are in line"
-  And "Jennifer" "Be" should not see "Hope to see you soon"
+  And she should see "you are in line"
+  And she should not see "Hope to see you soon"
 
 # Scenario: Jennifer doesn't want to wait in line
 #   Given "Jennifer" "Be" is on the wait time page

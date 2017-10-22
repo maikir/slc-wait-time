@@ -7,11 +7,11 @@ Feature: estimated wait time for help
 Background: student requests in database
  
   Given the following student queues exist:
-  | student_id | waiting? |
-  | 25804240   | true     |
-  | 00000000   | false    |
-  | 25804241   | true     |
-  | 25804242   | true     |  
+  | first_name | last_name | sid        | waiting? |
+  | Salvador   | Villegas  | 25804240   | true     |
+  | Maiki      | Rainton   | 00000000   | false    |
+  | Nahrae     | Seok      | 25804241   | true     |
+  | Alex       | Yang      | 25804242   | true     |
 
 Scenario: students signs up for “drop-in”
   Given I am on the sign up page
@@ -19,8 +19,8 @@ Scenario: students signs up for “drop-in”
   Then I should see a wait time of "120 min"
 
 Scenario: student visits wait time page
-  Given I am on the wait time page for 4
+  Given I am on the wait time page for "Alex" "Yang"
   Then I should see a wait time of "90 min"
   
-#student email confirmation should have abiltiy to cancel I think
+#student email confirmation should have ability to cancel I think
 
