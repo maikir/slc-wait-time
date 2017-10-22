@@ -27,4 +27,10 @@ RSpec.describe StudentQueuesController, type: :controller do
       expect(assigns(:wait_time)).to eq(30)
     end
   end
+
+  describe 'enter line' do
+    it 'checks the Student model if the student exists.'
+    it 'creates the student if the student does not exists in the database'
+    it 'adds the student to the queue'
+  end
 end

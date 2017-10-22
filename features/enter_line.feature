@@ -10,6 +10,7 @@ Scenario: Jennifer wants to wait in line
   And she clicks on "YES"
   Then she should be on the confirmation page for "Jennifer" "Be"
   And she should see "you are in line"
+  Then "Jennifer" "Be" should be in line
   And she should not see "Hope to see you soon"
 
 Scenario: Jennifer doesn't want to wait in line
@@ -17,6 +18,7 @@ Scenario: Jennifer doesn't want to wait in line
   And she clicks on "NO"
   Then she should not be on the confirmation page for "Jennifer" "Be"
   And she should see "you are not in line"
+  Then "Jennifer" "Be" should not be in line
   And she should not see "you are in line"
   
 
