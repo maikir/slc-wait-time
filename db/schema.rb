@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171020171637) do
+ActiveRecord::Schema.define(version: 20171022195019) do
+
+  create_table "active_sessions", force: :cascade do |t|
+    t.integer  "student_id"
+    t.string   "course"
+    t.time     "start_time"
+    t.time     "wait_time"
+    t.integer  "tutor_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "drop_in_histories", force: :cascade do |t|
     t.integer  "student_id"
