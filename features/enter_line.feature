@@ -15,7 +15,7 @@ Scenario: Jennifer wants to wait in line
 Scenario: Jennifer doesn't want to wait in line
   Given "Jennifer" "Be" is on the wait time page
   And she clicks on "NO"
-  Then she should be on the confirmation page for "Jennifer" "Be"
+  Then she should not be on the confirmation page for "Jennifer" "Be"
   And she should see "you are not in line"
   And she should not see "you are in line"
   

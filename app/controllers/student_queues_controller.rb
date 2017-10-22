@@ -49,6 +49,10 @@ class StudentQueuesController < ApplicationController
     #wait in line
   end
 
+  def destroy
+    #send student here if they decide to not to stay in line.
+  end
+
   def leave
     #don't wait in line
     @student_request = StudentRequest.find(params[:id])
