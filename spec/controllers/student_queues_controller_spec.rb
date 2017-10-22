@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe StudentQueuesController, type: :controller do
-  before(:each) do
-    @fake_student_request = double('StudentQueue', :id => 2, :waiting? => true)
-    @fake_student_request2 = double('StudentQueue', :id => 3, :waiting? => true)
-    #allow(StudentQueue).to receive(:where).and_return(@fake_student_request)
-  end
   describe 'wait time' do
+    before(:each) do
+      @fake_student_request = double('StudentQueue', :id => 2, :waiting? => true)
+      @fake_student_request2 = double('StudentQueue', :id => 3, :waiting? => true)
+      #allow(StudentQueue).to receive(:where).and_return(@fake_student_request)
+    end
     subject { get 'wait_time', :id => @fake_student_request.id}
     it 'retrieves the students waiting in the queue' do
       @fake_results = [@fake_student_request, @fake_student_request2]
