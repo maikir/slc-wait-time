@@ -9,7 +9,6 @@ class StudentQueuesController < ApplicationController
     @wait_pos = 0
     @sorted_results.each do |entry|
       break if "#{entry.student_id}" == params[:id]
-      byebug
       @wait_pos += 1
     end
 

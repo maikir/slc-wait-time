@@ -18,10 +18,11 @@ Given /the following student queues exist/ do |student_data_table|
     student = Student.create(student_data)
 
     if create_time
-      student.create_student_queue(:created_at => create_time)
+      student.build_student_queue(:created_at => create_time)
     else
-      student.create_student_queue()
+      student.build_student_queue()
     end
+    student.save
   end
 end
 
