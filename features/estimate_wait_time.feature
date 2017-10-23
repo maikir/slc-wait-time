@@ -7,11 +7,11 @@ Feature: estimated wait time for help
 Background: student requests in database
  
   Given the following student queues exist:
-  | first_name | last_name | sid        | waiting? |
-  | Salvador   | Villegas  | 25804240   | true     |
-  | Maiki      | Rainton   | 00000000   | false    |
-  | Nahrae     | Seok      | 25804241   | true     |
-  | Alex       | Yang      | 25804242   | true     |
+  | first_name | last_name | sid        |
+  | Salvador   | Villegas  | 25804240   |
+  | Maiki      | Rainton   | 00000000   |
+  | Nahrae     | Seok      | 25804241   |
+  | Alex       | Yang      | 25804242   |
 
 Scenario: students signs up for “drop-in”
   Given I am on the sign up page

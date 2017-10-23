@@ -6,22 +6,13 @@
   <th>Timestamp</th>
   <th>Name</th>
   <th>Course</th>
-  <th>Tutor</th>
-  <th>Start Time</th>
 </tr>
 
 <tr>
 <% @queueentries.each do |entry| %>                    
   <td><%= entry.created_at %><td>
   <td><%= %Q(#{entry.student.first_name} #{entry.student.last_name}) %><td>
-  <td><%= entry.course %><td> 
-  <td><%= "tbc" %><td>
-  <% if entry.start_time %>
-	<td><%= "waiting" %><td>
-  <% else %>
-	<td><%= entry.start_time %><td>
+  <td><%= entry.course %><td>
   <% end %>
-      
-<% end %>
 </tr>
 </table>

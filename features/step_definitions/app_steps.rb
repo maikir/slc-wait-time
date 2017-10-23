@@ -11,9 +11,6 @@ World(WithinHelpers)
 
 Given /the following student queues exist/ do |student_data_table|
   student_data_table.hashes.each do |student_data|
-    waiting = student_data[:waiting?]
-    student_data.delete('waiting?')
-
     # delete the create time if it exists, since we want this to go in the queue.
     create_time = student_data[:created_at]
     student_data.delete('created_at')
@@ -21,9 +18,9 @@ Given /the following student queues exist/ do |student_data_table|
     student = Student.create(student_data)
 
     if create_time
-      student.create_student_queue(:waiting? => waiting, :created_at => create_time)
+      student.create_student_queue(:created_at => create_time)
     else
-      student.create_student_queue(:waiting? => waiting)
+      student.create_student_queue()
     end
   end
 end

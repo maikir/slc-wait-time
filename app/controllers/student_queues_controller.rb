@@ -5,13 +5,13 @@ class StudentQueuesController < ApplicationController
   end
 
   def wait_time
-    #byebug
-    @sorted_results = StudentQueue.where(waiting?: true).sort_by {|request| request.id}
+    @sorted_results = StudentQueue.order('created_at')
     @wait_pos = 0
     @sorted_results.each do |request|
+      break if "#{request.student_id}" == params[:id]
       @wait_pos += 1
-      break if "#{request.id}" == params[:id]
     end
+
 	  @wait_time = @wait_pos * 30
 	  
 	  #will need the student's id in when confirming, so we pass it around
@@ -25,7 +25,7 @@ class StudentQueuesController < ApplicationController
   def create
     @sid = params[:student_sid]
     course = params[:student_course]
-    if (Student.where(:id => @sid).empty?)
+    if (Student.where(:sid => @sid).empty?)
       first_name = params[:student_first_name]
       last_name = params[:student_last_name]
       email = params[:student_email]
@@ -37,8 +37,7 @@ class StudentQueuesController < ApplicationController
     end
     #NOTE: Student Model should have am email field in the future.
     @student.create_student_queue(:course => course,
-                                  :waiting? => true,
-                                  :start_time => Time.now.in_time_zone('Pacific Time (US & Canada)')) #will have to make this PST.
+                                  :join_time => Time.now.in_time_zone('Pacific Time (US & Canada)')) #will have to make this PST.
     # place holder
 
     redirect_to wait_time_student_queue_path(@student)
