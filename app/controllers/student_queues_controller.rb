@@ -35,6 +35,8 @@ class StudentQueuesController < ApplicationController
                                 :last_name => last_name, 
                                 :sid => @sid,
                                 :email => email)
+    else
+      @student = Student.find(@sid)
     end
     @student.build_student_queue(:course => course)
     @student.save
@@ -47,6 +49,9 @@ class StudentQueuesController < ApplicationController
   end
 
   def destroy
+    @student = Student.find(params[:id])
+    StudentQueue.destroy(@student)
+    # @student.student_queue.destroy
     #send student here if they decide to not to stay in line.
   end
 

@@ -36,19 +36,20 @@ RSpec.describe StudentQueuesController, type: :controller do
                  :student_sid => '23636173',
                  :student_course => 'math',
                  :student_email => 'student@email.com'}
+
+      @student_data = {:first_name => @params[:student_first_name],
+                       :last_name => @params[:student_last_name],
+                       :sid => @params[:student_sid],
+                       :email => @params[:student_email]}
+
+      @student = FactoryGirl.build(:student, @student_data)
     end
     it 'checks the Student model if the student exists.' do
       expect(Student).to receive(:where).with(:id => @params[:student_sid]).and_return([])
       post :create, @params
     end
+
     describe 'after the student signs up' do
-      before :each do
-        @student_data = {:first_name => @params[:student_first_name],
-                         :last_name => @params[:student_last_name],
-                         :sid => @params[:student_sid],
-                         :email => @params[:student_email]}
-        @student = FactoryGirl.build(:student, @student_data)
-      end
       it 'creates the student if the student does not exists in the database' do
         allow(Student).to receive(:where).with(:id => @params[:student_sid]).and_return([])
         expect(Student).to receive(:create).with(@student_data).and_return(@student)
@@ -60,11 +61,28 @@ RSpec.describe StudentQueuesController, type: :controller do
         expect(@student.student_queue.course).to eq(@params[:student_course])
         expect(StudentQueue.find(@student.sid).student).to eq(@student)
       end
+      it 'looks up the student from the database if they are already there.' do
+        allow(Student).to receive(:where).with(:id => @params[:student_sid]).and_return([@student])
+        expect(Student).to receive(:find).with(@params[:student_sid]).and_return(@student)
+        post :create, @params
+      end
+
     end
 
     describe 'if the student does not want to wait' do
-      it 'removes the student from the queue'
+      before :each do
+        @id = @params[:student_sid]
+      end
+      it 'retrieves the student from the data base' do
+        expect(Student).to receive(:find).with(@id).and_return(@student)
+        post :destroy, {:id => @id}
+      end
+      it 'removes the student from the queue' do
+        allow(Student).to receive(:find).with(@id).and_return(@student)
+        expect(StudentQueue).to receive(:destroy).with(@student)
 
+
+      end
       it 'writes the student to the drop in histroy'
       it 'records that the student cancelled.'
     end
