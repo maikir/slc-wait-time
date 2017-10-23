@@ -4,6 +4,7 @@ class CreateStudents < ActiveRecord::Migration
       t.string :first_name
       t.string :last_name
       t.integer :sid
+      t.string :email
       t.boolean :transfer_student
       t.boolean :concurrency_student
 

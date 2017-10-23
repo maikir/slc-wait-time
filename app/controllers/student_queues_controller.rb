@@ -29,20 +29,17 @@ class StudentQueuesController < ApplicationController
       first_name = params[:student_first_name]
       last_name = params[:student_last_name]
       email = params[:student_email]
-    
-      
-      @student = Student.create(:first_name => first_name, 
+
+
+      @student = Student.create(:first_name => first_name,
                                 :last_name => last_name, 
-                                :sid => @sid)
+                                :sid => @sid,
+                                :email => email)
     end
-    #NOTE: Student Model should have am email field in the future.
-    @student.create_student_queue(:course => course,
-                                  :waiting? => true,
-                                  :start_time => Time.now.in_time_zone('Pacific Time (US & Canada)')) #will have to make this PST.
-    # place holder
+    @student.build_student_queue(:course => course)
+    @student.save
 
     redirect_to wait_time_student_queue_path(@student)
-
   end
 
   def confirm

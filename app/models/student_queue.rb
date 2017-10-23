@@ -1,3 +1,4 @@
 class StudentQueue < ActiveRecord::Base
-    belongs_to :student
+  self.primary_key = :student_id
+  belongs_to :student
 end

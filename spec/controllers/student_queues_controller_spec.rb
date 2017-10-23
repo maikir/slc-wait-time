@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'byebug'
 
 RSpec.describe StudentQueuesController, type: :controller do
   describe 'wait time' do
@@ -30,13 +31,42 @@ RSpec.describe StudentQueuesController, type: :controller do
 
   describe 'enter line' do
     before :each do
-      @params = {:first_name => 'Athina', :last_name => 'kaunda', :student_sid => '1234', :course => 'math'}
+      @params = {:student_first_name => 'Athina',
+                 :student_last_name => 'Kaunda',
+                 :student_sid => '23636173',
+                 :student_course => 'math',
+                 :student_email => 'student@email.com'}
     end
     it 'checks the Student model if the student exists.' do
-      expect(Student).to receive(:where).with(:id => '1').and_return([])
+      expect(Student).to receive(:where).with(:id => @params[:student_sid]).and_return([])
       post :create, @params
     end
-    it 'creates the student if the student does not exists in the database'
-    it 'adds the student to the queue'
+    describe 'after the student signs up' do
+      before :each do
+        @student_data = {:first_name => @params[:student_first_name],
+                         :last_name => @params[:student_last_name],
+                         :sid => @params[:student_sid],
+                         :email => @params[:student_email]}
+        @student = FactoryGirl.build(:student, @student_data)
+      end
+      it 'creates the student if the student does not exists in the database' do
+        allow(Student).to receive(:where).with(:id => @params[:student_sid]).and_return([])
+        expect(Student).to receive(:create).with(@student_data).and_return(@student)
+        post :create, @params
+      end
+      it 'adds the student to the queue' do
+        post :create, @params
+        expect(@student.student_queue).to_not be_nil
+        expect(@student.student_queue.course).to eq(@params[:student_course])
+        expect(StudentQueue.find(@student.sid).student).to eq(@student)
+      end
+    end
+
+    describe 'if the student does not want to wait' do
+      it 'removes the student from the queue'
+
+      it 'writes the student to the drop in histroy'
+      it 'records that the student cancelled.'
+    end
   end
 end
