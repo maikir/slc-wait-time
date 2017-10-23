@@ -20,8 +20,8 @@ class Tutor < ActiveRecord::Base
     def remove_unwanted(student_queue)
       queue_data = student_queue.attributes
       remove = %w(created-at, updated_at)
-      remove.each do |value.to_sym|
-        queue_data.delete(value)
+      remove.each do |value|
+        queue_data.delete(value.to_sym)
       end
       queue_data
     end
