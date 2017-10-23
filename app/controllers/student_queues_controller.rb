@@ -7,8 +7,8 @@ class StudentQueuesController < ApplicationController
   def wait_time
     @sorted_results = StudentQueue.order('created_at')
     @wait_pos = 0
-    @sorted_results.each do |request|
-      break if "#{request.student_id}" == params[:id]
+    @sorted_results.each do |entry|
+      break if "#{entry.student_id}" == params[:id]
       @wait_pos += 1
     end
 
