@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20171022195019) do
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "sid"
+    t.string   "email"
     t.boolean  "transfer_student"
     t.boolean  "concurrency_student"
     t.datetime "created_at",          null: false
