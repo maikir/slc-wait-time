@@ -54,6 +54,7 @@ table#queue {
   border-collapse: collapse;
   width: 100%;
   border-bottom: 2px solid black;
+    counter-reset: rowNumber;
 }
 table#queue th {
   border: 2px solid white;
@@ -67,11 +68,23 @@ table#queue th, table#movies td {
 table#queue th.hilite {
   background-color: yellow;
 }
+
+table#queue td:first-child::before {
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;
+}
+
+table#queue tr#q_row {
+    counter-increment: rowNumber;
+}
 #notice #warning {
   background: rosybrown;
   margin: 1em 0;
   padding: 4px;
 }
+
+
 form label {
   display: block;
   line-height: 25px;

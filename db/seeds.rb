@@ -24,7 +24,8 @@ tutors.each do |tutor|
 end
 
 
-
+counter = 0
 students.each do |student|
-  StudentQueue.create!(:student_id=>student[:sid], :course => "english")
+  StudentQueue.create!(:student_id=>student[:sid], :course => "english", :created_at => "2017-10-23 01:3#{counter}:58 UTC")
+  counter = counter + 1
 end
