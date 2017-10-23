@@ -6,7 +6,6 @@ class CreateStudentQueues < ActiveRecord::Migration
       
       t.integer :student_id #should be foreign key.
       t.string :course
-      t.time :join_time #convert created_at to Pacific Time
       t.timestamps  #sort by create time.
       
     end
