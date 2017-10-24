@@ -71,16 +71,20 @@ RSpec.describe StudentQueuesController, type: :controller do
 
     describe 'if the student does not want to wait' do
       before :each do
-        @id = @params[:student_sid]
+        @id = {:id => @params[:student_sid]}
+        @student.build_student_queue
+        @student.save
+
       end
       it 'retrieves the student from the data base' do
-        expect(Student).to receive(:find).with(@id).and_return(@student)
-        post :destroy, {:id => @id}
+        expect(Student).to receive(:find).with(@id[:id]).and_return(@student)
+        post :destroy, @id
       end
       it 'removes the student from the queue' do
-        allow(Student).to receive(:find).with(@id).and_return(@student)
-        expect(StudentQueue).to receive(:destroy).with(@student)
 
+        allow(Student).to receive(:find).with(@id[:id]).and_return(@student)
+        expect(StudentQueue).to receive(:destroy).with(@student)
+        post :destroy, @id
 
       end
       it 'writes the student to the drop in histroy'
