@@ -4,27 +4,27 @@ require 'byebug'
 RSpec.describe StudentQueuesController, type: :controller do
   describe 'wait time' do
     before(:each) do
-      @fake_student_request = double('StudentQueue', :id =>1)
-      @fake_student_request2 = double('StudentQueue', :id =>2)
+      @fake_student_request = double('StudentQueue', :id => 1, :student_id => 1)
+      @fake_student_request2 = double('StudentQueue', :id => 2, :student_id => 2)
+      allow(Student).to receive(:where)
       #allow(StudentQueue).to receive(:where).and_return(@fake_student_request)
     end
     subject { get 'wait_time', :id => @fake_student_request.id}
     it 'retrieves the students waiting in the queue' do
       @fake_results = [@fake_student_request, @fake_student_request2]
-      allow(StudentQueue).to receive(:where).and_return(@fake_results)
+      allow(StudentQueue).to receive(:order).with("id").and_return(@fake_results)
       subject
-      byebug
       expect(assigns(:sorted_results)).to eq(@fake_results)
     end
     it 'finds the correct wait position' do
       @fake_results = [@fake_student_request, @fake_student_request2]
-      allow(StudentQueue).to receive(:where).and_return(@fake_results)
+      allow(StudentQueue).to receive(:order).with("id").and_return(@fake_results)
       subject
       expect(assigns(:wait_pos)).to eq(1)
     end
     it 'calculates the correct wait time' do
       @fake_results = [@fake_student_request, @fake_student_request2]
-      allow(StudentQueue).to receive(:where).and_return(@fake_results)
+      allow(StudentQueue).to receive(:order).with("id").and_return(@fake_results)
       subject
       expect(assigns(:wait_time)).to eq(30)
     end

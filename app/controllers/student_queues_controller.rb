@@ -5,11 +5,11 @@ class StudentQueuesController < ApplicationController
   end
 
   def wait_time
-    @sorted_results = StudentQueue.order('created_at')
+    @sorted_results = StudentQueue.order('id')
     @wait_pos = 0
     @sorted_results.each do |entry|
-      break if "#{entry.student_id}" == params[:id]
       @wait_pos += 1
+      break if "#{entry.student_id}" == params[:id]
     end
 
 	  @wait_time = @wait_pos * 30
