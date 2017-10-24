@@ -80,8 +80,9 @@ RSpec.describe StudentQueuesController, type: :controller do
         post :destroy, @id
       end
       it 'writes the student to the drop in histroy' do
-        expect(Student).to receive(:queue_to_history).with(@id[:id])
+        # expect(@student).to receive(:queue_to_history) #how to stub instance method?
         post :destroy, @id
+        expect(@student.drop_in_histories).not_to be_empty
       end
       it 'removes the student from the queue' do
         allow(Student).to receive(:find).with(@id[:id]).and_return(@student)

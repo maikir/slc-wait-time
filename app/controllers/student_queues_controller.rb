@@ -50,6 +50,7 @@ class StudentQueuesController < ApplicationController
 
   def destroy
     @student = Student.find(params[:id])
+    @student.queue_to_history
     StudentQueue.destroy(@student)
     # @student.student_queue.destroy
     #send student here if they decide to not to stay in line.
