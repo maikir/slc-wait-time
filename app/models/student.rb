@@ -11,4 +11,12 @@ class Student < ActiveRecord::Base
       self.save
     end
   end
+
+  def queue_to_history
+    if self.student_queue
+      self.drop_in_histories.build(:course => self.student_queue.course,
+                                   :status => 'canceled')
+      self.save
+    end
+  end
 end
