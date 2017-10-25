@@ -5,7 +5,7 @@ class StudentQueuesController < ApplicationController
   end
 
   def wait_time
-    @sorted_results = StudentQueue.order('id')
+    @sorted_results = StudentQueue.order('created_at')
     @wait_pos = 0
     @sorted_results.each do |entry|
       @wait_pos += 1
@@ -21,7 +21,7 @@ class StudentQueuesController < ApplicationController
   def new
     # render new template	
   end
-	
+
   def create
     @sid = params[:student_sid]
     course = params[:student_course]
