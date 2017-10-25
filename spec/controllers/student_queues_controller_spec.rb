@@ -12,21 +12,21 @@ RSpec.describe StudentQueuesController, type: :controller do
     subject { get 'wait_time', :id => @fake_student_request.id}
     it 'retrieves the students waiting in the queue' do
       @fake_results = [@fake_student_request, @fake_student_request2]
-      allow(StudentQueue).to receive(:order).with("id").and_return(@fake_results)
+      allow(StudentQueue).to receive(:order).with("created_at").and_return(@fake_results)
       subject
       expect(assigns(:sorted_results)).to eq(@fake_results)
     end
     it 'finds the correct wait position' do
       @fake_results = [@fake_student_request, @fake_student_request2]
-      allow(StudentQueue).to receive(:order).with("id").and_return(@fake_results)
+      allow(StudentQueue).to receive(:order).with("created_at").and_return(@fake_results)
       subject
-      expect(assigns(:wait_pos)).to eq(1)
+      expect(assigns(:wait_pos)).to eq(0)
     end
     it 'calculates the correct wait time' do
       @fake_results = [@fake_student_request, @fake_student_request2]
-      allow(StudentQueue).to receive(:order).with("id").and_return(@fake_results)
+      allow(StudentQueue).to receive(:order).with("created_at").and_return(@fake_results)
       subject
-      expect(assigns(:wait_time)).to eq(30)
+      expect(assigns(:wait_time)).to eq(0)
     end
   end
 
@@ -63,7 +63,7 @@ RSpec.describe StudentQueuesController, type: :controller do
         expect(StudentQueue.find(@student.sid).student).to eq(@student)
       end
       it 'looks up the student from the database if they are already there.' do
-        allow(Student).to receive(:where).with(:id => @params[:student_sid]).and_return([@student])
+        allow(Student).to receive(:where).with(:sid => @params[:student_sid]).and_return([@student])
         expect(Student).to receive(:find).with(@params[:student_sid]).and_return(@student)
         post :create, @params
       end

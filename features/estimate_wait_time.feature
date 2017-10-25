@@ -16,11 +16,11 @@ Background: student requests in database
 Scenario: students signs up for “drop-in”
   Given I am on the sign up page
   When I fill in the "student_requests" form and click "Submit"
-  Then I should see a wait time of "150 min"
+  Then I should see a wait time of "120 min"
 
 Scenario: student visits wait time page
   Given I am on the wait time page for "Alex" "Yang"
-  Then I should see a wait time of "120 min"
+  Then I should see a wait time of "90 min"
   
 #student email confirmation should have ability to cancel I think
 
