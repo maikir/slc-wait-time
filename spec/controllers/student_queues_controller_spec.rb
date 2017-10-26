@@ -30,6 +30,19 @@ RSpec.describe StudentQueuesController, type: :controller do
     end
   end
 
+  describe 'view index' do
+    before(:each) do
+      @fake_student_request = double('StudentQueue', :id => 1, :student_id => 1)
+      @fake_student_request2 = double('StudentQueue', :id => 2, :student_id => 2)
+      #allow(StudentQueue).to receive(:where).and_return(@fake_student_request)
+    end
+    it "properly sort" do
+      allow(StudentQueue).to receive(:order).with("created_at").and_return(@fake_results)
+      expect(assigns(:queue_entries)).to eq(@fake_results)
+      get :index
+    end
+  end
+
   describe 'enter line' do
     before :each do
       @params = {:student_first_name => 'Athina',

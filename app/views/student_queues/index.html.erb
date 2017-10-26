@@ -17,7 +17,7 @@
 </tr>
 
 <tr>
-<% @queueentries.each do |entry| %>
+<% @queue_entries.each do |entry| %>
       <tr id="q_row">
         <td></td>
         <td><%= time_diff(entry.created_at, Time.now) %></td>

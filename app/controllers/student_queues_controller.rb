@@ -1,6 +1,6 @@
 class StudentQueuesController < ApplicationController
   def index
-	  @queueentries = StudentQueue.order('created_at')
+	  @queue_entries = StudentQueue.order('created_at')
     render "student_queues/index"
   end
 
