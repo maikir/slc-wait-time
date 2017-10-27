@@ -188,3 +188,14 @@ Then /^I should see a wait time of "(.*)"$/ do |wait_time|
   step %{I should see "#{wait_time}"}
 end
 
+When /^I click "(.*)" for "(.*)"$/ do |button_type, person|
+  pending
+end
+
+Then /^I should see "(.*)" in "(.*)"$/ do |person, table|
+  pending
+end
+
+When /^I help all the students$/ do
+  pending
+end
