@@ -43,3 +43,6 @@ And /^(?:she|he?) clicks on "(.*)"$/ do |button|
   steps %Q{ When follow "#{button}"}
 end
 
+Given /^I specify "(.*)"$/ do |string|
+  pending
+end
