@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'byebug'
 
 RSpec.describe Student, type: :model do
   describe 'If a student does not want to wait in line' do
@@ -27,5 +28,35 @@ RSpec.describe Student, type: :model do
       end
     end
 
+  end
+
+  describe 'when erasing a student from the student_queue' do
+    before :each do
+      student_info = {:first_name => 'Athina',
+                      :sid => 11234832}
+      @student = FactoryGirl.build(:student, student_info)
+    end
+    it 'checks if the student has a entry in the student queue' do
+      expect(@student).to receive(:student_queue)
+      @student.destroy_student_queue
+    end
+    describe 'if the student has a entry in the student queue' do
+      before :each do
+        @student_queue = FactoryGirl.build(:student_queue, :student_id => @student.sid)
+        allow(@student).to receive(:student_queue).and_return(@student_queue)
+      end
+      it 'it destroys the entry in the queue if the student has an entry' do
+        expect(@student_queue).to receive(:destroy)
+        @student.destroy_student_queue
+      end
+      it 'sets student_queue of current student to nil' do
+        expect(@student).to receive(:student_queue=).with(nil)
+        @student.destroy_student_queue
+      end
+      it 'saves the updated student.' do
+        expect(@student).to receive(:save)
+        @student.destroy_student_queue
+      end
+    end
   end
 end
