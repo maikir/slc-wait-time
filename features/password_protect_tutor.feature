@@ -4,7 +4,7 @@ Feature: password protect data for tutor
   I want the queue data to be password protected
 
   Scenario: Sign in happy path
-    Given I'm on the sign in page
+    Given I am on the sign in page
     When I fill in the password correctly
     And I should be on student queues page
 
