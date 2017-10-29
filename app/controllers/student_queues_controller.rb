@@ -25,7 +25,7 @@ class StudentQueuesController < ApplicationController
   def create
     @sid = params[:student_sid]
     course = params[:student_course]
-    if (Student.where(:sid => @sid).empty?)
+    if Student.where(:sid => @sid).empty?
       first_name = params[:student_first_name]
       last_name = params[:student_last_name]
       email = params[:student_email]
