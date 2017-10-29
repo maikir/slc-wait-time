@@ -25,7 +25,7 @@ Given /^"([^"]*)" "([^"]*)" is already in line$/ do |first_name, last_name|
   }
 end
 
-Then /^"(.*)" "(.*)" should (not)? be in line$/ do |first_name, last_name, not_be_in_line|
+Then /^"(.*)" "(.*)" should( not)? be in line$/ do |first_name, last_name, not_be_in_line|
   student_list = Student.where(:first_name => first_name, :last_name => last_name)
   student_list.should_not be_empty
   student = student_list[0]
