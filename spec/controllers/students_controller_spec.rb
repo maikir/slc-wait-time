@@ -48,7 +48,7 @@ RSpec.describe StudentsController, type: :controller do
     end
     it 'scheduled_appointment#create if appointment_type is scheduled' do
       post :sign_up, {:id => @id, :appointment_type => 'scheduled'}
-      expect(response).to redirect_to(:controller => 'scheduled_appointment',
+      expect(response).to redirect_to(:controller => 'scheduled_appointments',
                                       :action => @action,
                                       :id => @id)
 

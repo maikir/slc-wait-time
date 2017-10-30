@@ -7,10 +7,9 @@ Rails.application.routes.draw do
   # root 'welcome#index'
   resources :students do
     resources :drop_in_histories
-    resources :weekly_appointments
-    resources :scheduled_appointments
   end
-  
+  resources :weekly_appointments
+  resources :scheduled_appointments
   resources :student_queues
 
 
