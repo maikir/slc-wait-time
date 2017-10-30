@@ -14,20 +14,28 @@ class StudentsController < ApplicationController
       @student = Student.find(sid)
     end
 
-    redirect_to sign_up_student_path(:id => @student.id, :appointment_type => params[:appointment_type])
+    redirect_to sign_in_student_path(:id => @student.id, :appointment_type => params[:appointment_type])
   end
 
-  def sign_up
+  def sign_in
     appointment_type = params[:appointment_type]
     id, action = params[:id], 'create'
     case appointment_type
-      when 'drop_in'
-        redirect_to :controller => 'student_queues', :action => action, :id => id
       when 'scheduled'
-        redirect_to :controller => 'scheduled_appointments', :action => action, :student_id => id
+        redirect_to :controller => 'scheduled_appointments',
+                    :action => action,
+                    :student_id => id,
+                    :course => params[:student_course]
       when 'weekly'
-        redirect_to :controller => 'weekly_appointments', :action => action, :student_id => id
-
+        redirect_to :controller => 'weekly_appointments',
+                    :action => action,
+                    :student_id => id,
+                    :course => params[:student_course]
+      else
+        redirect_to :controller => 'student_queues',
+                    :action => action,
+                    :id => id,
+                    :course => params[:student_course]
     end
     #direct the request based on what type of appointment the student is here for.
   end

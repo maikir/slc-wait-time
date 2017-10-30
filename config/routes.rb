@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
 
   root 'students#new'
-  get 'students/:id/sign_up' => 'students#sign_up', as: :sign_up_student
+  get 'students/:id/sign_in' => 'students#sign_in', as: :sign_in_student
   get 'student_queues/:id/wait_time' => 'student_queues#wait_time', as: :wait_time_student_queue
   get 'student_queues/:id/confirm' => 'student_queues#confirm', as: :confirm_student_queue
   get 'student_queues/:id/remove' => 'student_queues#remove', as: :remove_student_queue

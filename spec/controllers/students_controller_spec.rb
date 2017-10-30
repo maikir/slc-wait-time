@@ -35,7 +35,7 @@ RSpec.describe StudentsController, type: :controller do
       allow(Student).to receive(:where).with(:sid => @params[:student_sid]).and_return([@student])
       allow(Student).to receive(:find).with(@params[:student_sid]).and_return(@student)
       post :create, @params
-      expect(response).to redirect_to sign_up_student_path(:id => @student.id,
+      expect(response).to redirect_to sign_in_student_path(:id => @student.id,
                                                            :appointment_type => @params[:appointment_type])
 
     end
@@ -47,25 +47,21 @@ RSpec.describe StudentsController, type: :controller do
       @action = 'create'
     end
     it 'scheduled_appointment#create if appointment_type is scheduled' do
-      post :sign_up, {:id => @id, :appointment_type => 'scheduled'}
+      post :sign_in, {:id => @id, :appointment_type => 'scheduled'}
       expect(response).to redirect_to(:controller => 'scheduled_appointments',
-                                      :action => @action,
-                                      :student_id => @id)
+                                      :action => @action, :student_id => @id)
 
     end
     it 'student_queue#create if appointment_type is drop_in' do
-      post :sign_up, {:id => @id, :appointment_type => 'drop_in'}
+      post :sign_in, {:id => @id, :appointment_type => 'drop_in'}
       expect(response).to redirect_to(:controller => 'student_queues',
-                                      :action => @action,
-                                      :id => @id)
+                                      :action => @action, :id => @id)
 
     end
     it 'weekly_appointment#create if appointment_type is weekly' do
-      post :sign_up, {:id => @id, :appointment_type => 'weekly'}
+      post :sign_in, {:id => @id, :appointment_type => 'weekly'}
       expect(response).to redirect_to(:controller => 'weekly_appointments',
-                                      :action => @action,
-                                      :student_id => @id)
-
+                                      :action => @action, :student_id => @id)
     end
   end
 end
