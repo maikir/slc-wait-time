@@ -1,3 +1,5 @@
+# Owners: Haggai Kaunda,
+
 class WeeklyAppointmentsController < ApplicationController
   def create
     student = Student.find(params[:student_id])

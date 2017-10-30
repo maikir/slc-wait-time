@@ -1,3 +1,5 @@
+# Owners: hkaunda,
+
 require 'rails_helper'
 
 RSpec.describe WeeklyAppointmentsController, type: :controller do

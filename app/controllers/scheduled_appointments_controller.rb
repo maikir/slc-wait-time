@@ -1,3 +1,5 @@
+# owners: hkaunda
+
 class ScheduledAppointmentsController < ApplicationController
   def create
     student = Student.find(params[:student_id])

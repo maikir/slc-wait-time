@@ -1,3 +1,5 @@
+#Owners: hkaunda, svillegas, mrainton, ayang
+
 class StudentQueuesController < ApplicationController
   def index
 	  @queue_entries = StudentQueue.order('created_at')

@@ -1,5 +1,6 @@
+# Owners: hkaunda, svillegas, mrainton
+
 require 'rails_helper'
-require 'byebug'
 
 RSpec.describe StudentQueuesController, type: :controller do
   describe 'wait time' do

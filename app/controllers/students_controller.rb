@@ -1,3 +1,5 @@
+# Owners: hkaunda,
+
 class StudentsController < ApplicationController
   def new
     #render new template
