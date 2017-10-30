@@ -7,14 +7,15 @@ Rails.application.routes.draw do
   # root 'welcome#index'
   resources :students do
     resources :drop_in_histories
-    resources :weekly_appointment
-    resources :scheduled_appointment
+    resources :weekly_appointments
+    resources :scheduled_appointments
   end
   
   resources :student_queues
 
 
   root 'students#new'
+  get 'students/:id/sign_up' => 'students#sign_up', as: :sign_up_student
   get 'student_queues/:id/wait_time' => 'student_queues#wait_time', as: :wait_time_student_queue
   get 'student_queues/:id/confirm' => 'student_queues#confirm', as: :confirm_student_queue
   get 'student_queues/:id/remove' => 'student_queues#remove', as: :remove_student_queue
