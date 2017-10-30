@@ -50,7 +50,7 @@ RSpec.describe StudentsController, type: :controller do
       post :sign_up, {:id => @id, :appointment_type => 'scheduled'}
       expect(response).to redirect_to(:controller => 'scheduled_appointments',
                                       :action => @action,
-                                      :id => @id)
+                                      :student_id => @id)
 
     end
     it 'student_queue#create if appointment_type is drop_in' do
@@ -64,7 +64,7 @@ RSpec.describe StudentsController, type: :controller do
       post :sign_up, {:id => @id, :appointment_type => 'weekly'}
       expect(response).to redirect_to(:controller => 'weekly_appointments',
                                       :action => @action,
-                                      :id => @id)
+                                      :student_id => @id)
 
     end
   end

@@ -24,9 +24,10 @@ class StudentsController < ApplicationController
       when 'drop_in'
         redirect_to :controller => 'student_queues', :action => action, :id => id
       when 'scheduled'
-        redirect_to :controller => 'scheduled_appointments', :action => action, :id => id
+        redirect_to :controller => 'scheduled_appointments', :action => action, :student_id => id
       when 'weekly'
-        redirect_to :controller => 'weekly_appointments', :action => action, :id => id
+        redirect_to :controller => 'weekly_appointments', :action => action, :student_id => id
+
     end
     #direct the request based on what type of appointment the student is here for.
   end
