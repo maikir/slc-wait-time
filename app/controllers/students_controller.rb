@@ -31,13 +31,11 @@ class StudentsController < ApplicationController
                     :action => action,
                     :student_id => id,
                     :course => params[:student_course]
-      else
+      else #this is for drop_in, we'll have to fix this later to handle when student does specify appointment type.
         redirect_to :controller => 'student_queues',
                     :action => action,
                     :id => id,
                     :course => params[:student_course]
     end
-    #direct the request based on what type of appointment the student is here for.
   end
-
 end

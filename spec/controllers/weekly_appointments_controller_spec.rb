@@ -10,7 +10,7 @@ RSpec.describe WeeklyAppointmentsController, type: :controller do
       expect(Student).to receive(:find).with(@params[:student_id]).and_return(@student)
       post :create, @params
     end
-    it 'checks that a weekly appointment exists before creating one' do
+    it 'checks that a scheduled appointment exists before creating one' do
       allow(Student).to receive(:find).with(@params[:student_id]).and_return(@student)
       expect(@student).to receive(:weekly_appointment)
       post :create, @params
@@ -20,7 +20,7 @@ RSpec.describe WeeklyAppointmentsController, type: :controller do
         allow(Student).to receive(:find).with(@params[:student_id]).and_return(@student)
         allow(@student).to receive(:weekly_appointment).and_return(nil)
       end
-      it 'creates a weekly appointment for student and saves it' do
+      it 'creates a scheduled appointment for student and saves it' do
         expect(@student).to receive(:build_weekly_appointment).with(:course => @params[:course])
         expect(@student).to receive(:save)
         post :create, @params
