@@ -23,26 +23,14 @@ class StudentQueuesController < ApplicationController
   end
 
   def create
-    @sid = params[:student_sid]
-    course = params[:student_course]
-    if Student.where(:sid => @sid).empty?
-      first_name = params[:student_first_name]
-      last_name = params[:student_last_name]
-      email = params[:student_email]
-
-
-      @student = Student.create(:first_name => first_name,
-                                :last_name => last_name, 
-                                :sid => @sid,
-                                :email => email)
+    student = Student.find(params[:id]) #after nesting student_queue routes, {:id => :student_id}
+    if student.student_queue.nil?
+      student.build_student_queue(:course => params[:course])
+      student.save
     else
-      @student = Student.find(@sid)
+      flash[:notice] = 'you are already in line'
     end
-
-    @student.build_student_queue(:course => course)
-    @student.save
-
-    redirect_to wait_time_student_queue_path(@student)
+    redirect_to wait_time_student_queue_path(student.sid)
   end
 
   def confirm
@@ -52,15 +40,8 @@ class StudentQueuesController < ApplicationController
   def destroy
     @student = Student.find(params[:id])
     @student.queue_to_history
-    StudentQueue.destroy(@student)
+    StudentQueue.destroy(@student.sid)
     # @student.student_queue.destroy
     #send student here if they decide to not to stay in line.
   end
-
-  def leave
-    #don't wait in line
-    @student_request = StudentRequest.find(params[:id])
-    
-  end
-
 end
