@@ -15,7 +15,8 @@ class StudentsController < ApplicationController
     end
 
     redirect_to sign_in_student_path(:id => @student.id,
-                                     :appointment_type => params[:appointment_type])
+                                     :appointment_type => params[:appointment_type],
+                                     :course => params[:student_course])
   end
 
   def sign_in
@@ -26,17 +27,17 @@ class StudentsController < ApplicationController
         redirect_to :controller => 'scheduled_appointments',
                     :action => action,
                     :student_id => id,
-                    :course => params[:student_course]
+                    :course => params[:course]
       when 'weekly'
         redirect_to :controller => 'weekly_appointments',
                     :action => action,
                     :student_id => id,
-                    :course => params[:student_course]
+                    :course => params[:course]
       else #this is for drop_in, we'll have to fix this later to handle when student does specify appointment type.
         redirect_to :controller => 'student_queues',
                     :action => action,
                     :id => id,
-                    :course => params[:student_course]
+                    :course => params[:course]
     end
   end
 end

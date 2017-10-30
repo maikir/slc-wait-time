@@ -36,7 +36,8 @@ RSpec.describe StudentsController, type: :controller do
       allow(Student).to receive(:find).with(@params[:student_sid]).and_return(@student)
       post :create, @params
       expect(response).to redirect_to sign_in_student_path(:id => @student.id,
-                                                           :appointment_type => @params[:appointment_type])
+                                                           :appointment_type => @params[:appointment_type],
+                                                           :course => @params[:student_course])
 
     end
   end
