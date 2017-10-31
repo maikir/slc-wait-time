@@ -1,5 +1,5 @@
 
-Given /^"([^"]*)" "([^"]*)" is on the wait time page$/ do |first_name, last_name|
+Given /^"(.*)" "(.*)" is on the wait time page$/ do |first_name, last_name|
   sid = 123456
   steps %Q{
     Given I am on the home page
@@ -17,7 +17,7 @@ Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   expect(page.body.index(e1) < page.body.index(e2))
 end
 
-Given /^"([^"]*)" "([^"]*)" is already in line$/ do |first_name, last_name| 
+Given /^"(.*)" "(.*)" is already in line$/ do |first_name, last_name|
   steps %Q{
     Given "#{first_name}" "#{last_name}" is on the wait time page
     And she clicks on "YES"

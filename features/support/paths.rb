@@ -17,7 +17,7 @@ module NavigationHelpers
       '/'
     when /^the student line page$/ then '/student_queues'
       
-    when /^the sign up page$/ then new_student_queue_path
+    when /^the sign up page$/ then new_student_path
       
     when /^the wait time page for "(.*)" "(.*)"$/i then
       student = Student.where(:first_name => $1, :last_name => $2)[0]

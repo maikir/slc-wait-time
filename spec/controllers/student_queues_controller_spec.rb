@@ -43,49 +43,40 @@ RSpec.describe StudentQueuesController, type: :controller do
     end
   end
 
-  describe 'enter line' do
+  describe 'when adding a student to the queue it' do
     before :each do
-      @params = {:student_first_name => 'Athina',
-                 :student_last_name => 'Kaunda',
-                 :student_sid => '23636173',
-                 :student_course => 'math',
-                 :student_email => 'student@email.com'}
-
-      @student_data = {:first_name => @params[:student_first_name],
-                       :last_name => @params[:student_last_name],
-                       :sid => @params[:student_sid],
-                       :email => @params[:student_email]}
-
+      @params = {:id => '238745938', :course => 'Ελεννικά'}
+      @student_data = {:first_name => 'Athina',
+                       :last_name => 'Kaunda',
+                       :sid => '238745938',
+                       :email => 'student@email.com'}
       @student = FactoryGirl.build(:student, @student_data)
     end
-    it 'checks the Student model if the student exists.' do
-      expect(Student).to receive(:where).with(:sid => @params[:student_sid]).and_return([])
+    it 'looks up the student in the database' do
+      expect(Student).to receive(:find).with(@params[:id]).and_return(@student)
       post :create, @params
     end
+    it 'checks to see if the student is not in line' do
+      allow(Student).to receive(:find).with(@params[:id]).and_return(@student)
 
-    describe 'after the student signs up' do
-      it 'creates the student if the student does not exists in the database' do
-        allow(Student).to receive(:where).with(:sid => @params[:student_sid]).and_return([])
-        expect(Student).to receive(:create).with(@student_data).and_return(@student)
-        post :create, @params
-      end
-      it 'adds the student to the queue' do
-        post :create, @params
-        expect(@student.student_queue).to_not be_nil
-        expect(@student.student_queue.course).to eq(@params[:student_course])
-        expect(StudentQueue.find(@student.sid).student).to eq(@student)
-      end
-      it 'looks up the student from the database if they are already there.' do
-        allow(Student).to receive(:where).with(:sid => @params[:student_sid]).and_return([@student])
-        expect(Student).to receive(:find).with(@params[:student_sid]).and_return(@student)
-        post :create, @params
-      end
-
+      post :create, @params
+    end
+    it 'creates and saves a student_queue entry for the student if they are not aready in queue' do
+      allow(Student).to receive(:find).with(@params[:id]).and_return(@student)
+      allow(@student).to receive(:student_queue).and_return(nil)
+      expect(@student).to receive(:build_student_queue).with(:course => @params[:course])
+      expect(@student).to receive(:save)
+      post :create, @params
+    end
+    it 'redirects to the wait time controller' do
+      allow(Student).to receive(:find).with(@params[:id]).and_return(@student)
+      post :create, @params
+      expect(response).to redirect_to wait_time_student_queue_path(@student)
     end
 
     describe 'if the student does not want to wait' do
       before :each do
-        @id = {:id => @params[:student_sid]}
+        @id = {:id => @params[:id]}
         @student.build_student_queue
         @student.save
       end
@@ -100,7 +91,7 @@ RSpec.describe StudentQueuesController, type: :controller do
       end
       it 'removes the student from the queue' do
         allow(Student).to receive(:find).with(@id[:id]).and_return(@student)
-        expect(StudentQueue).to receive(:destroy).with(@student)
+        expect(StudentQueue).to receive(:destroy).with(@student.sid)
         post :destroy, @id
       end
     end
