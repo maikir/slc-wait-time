@@ -1,7 +1,7 @@
 ## CodeClimate GPA Badge
 [![Code Climate](https://codeclimate.com/github/rails/rails/badges/gpa.svg)](https://codeclimate.com/github/rails/rails)
 ## CodeClimate Code Coverage Badge
-[![Test Coverage](https://codeclimate.com/github/rails/rails/badges/coverage.svg)](https://codeclimate.com/github/rails/rails/coverage)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/7f456195a0d9bbc0a5f2/test_coverage)](https://codeclimate.com/github/villegsa/slc-wait-time/test_coverage)
 ## Travis-ci Build Status
 [![Build Status](https://travis-ci.org/villegsa/slc-wait-time-and-list.svg?branch=master)](https://travis-ci.org/villegsa/slc-wait-time-and-list)
 ## Heroku
