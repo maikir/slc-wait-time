@@ -8,8 +8,6 @@ Rails.application.routes.draw do
   resources :students do
     resources :drop_in_histories
     resources :weekly_appointments, :scheduled_appointments, except: :create
-    get '/scheduled_appointments/create' => 'scheduled_appointments#create', as: :scheduled_appointment_create
-    get '/weekly_appointments/create' => 'weekly_appointment#create', as: :weekly_appointment_create
   end
 
 
@@ -26,6 +24,8 @@ Rails.application.routes.draw do
   #issues redirects to controller actions that have the GET http verb. The same thing applies for 
   #{weekly, scheduled}_appointments above.
   get 'student_queues/:id/create' => 'student_queues#create', as: :create_student_queue
+  get 'weekly_appointments/:student_id/create' => 'weekly_appointments#create', as: :create_weekly_appointment
+  get 'scheduled_appointments/:student_id/create' => 'scheduled_appointments#create', as: :create_scheduled_appointment
 
 
 

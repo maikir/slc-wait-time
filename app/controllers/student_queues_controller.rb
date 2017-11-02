@@ -3,7 +3,7 @@ class StudentQueuesController < ApplicationController
 	  @queue_entries = StudentQueue.order('created_at')
 	  @queue_entries2 = WeeklyAppointment.order('created_at')
 	  @queue_entries3 = ScheduledAppointment.order('created_at')
-    render "student_queues/index"
+    render 'student_queues/index'
   end
 
   def wait_time

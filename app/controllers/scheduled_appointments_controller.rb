@@ -1,5 +1,6 @@
 class ScheduledAppointmentsController < ApplicationController
 
+  #this method shouldn't exist because it does the same thing as student_queues#index.
   def index
 	  @queue_entries = StudentQueue.order('created_at')
 	  @queue_entries2 = WeeklyAppointment.order('created_at')
